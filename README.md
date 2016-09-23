@@ -1,17 +1,10 @@
 ## ИС Кафедры: учет студентов
 
-Требуется разработать компоненты информационной системы кафедры, обеспечивающие:
+Подробные требования к проекту описаны в [вики](https://github.com/EvgeniyGor/StudentRecords/wiki/%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BA-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%83)
 
-- Управление студенческими данными
-- Импорт/экспорт данных
-- Рейтинги по предметам, курсовые, практики.
-- Генерация отчетов.
+[Там же](https://github.com/EvgeniyGor/StudentRecords/wiki/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D0%BA%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B4%D0%BB%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8) можно найти туториал по установке и настройке окружения для разработки
 
-deliverables: веб-приложение на языке Python2.7/Django + MongoDb.
-
-===
-
-## Курсы:
+## Материалы для изучения:
 
 1. [Верстка](https://htmlacademy.ru)
 
@@ -20,11 +13,3 @@ deliverables: веб-приложение на языке Python2.7/Django + Mon
 3. [Базовый питон](https://stepik.org/course/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B0-Python-67/syllabus)
 
 4. [Чуть более продвинутый питон](https://stepik.org/course/Python-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-%D0%B8-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-512/)
-
-===
-
-## Перед началом разработки:
-1. Получить студенческую лицензию JetBrains [по ссылке](https://www.jetbrains.com/shop/eform/students)
-2. Скачать и установить PyCharm 
-3. Форкнуть и склонировать себе репозиторий
-4. Переключиться на свою ветку (git checkout `"your branch name"`) 

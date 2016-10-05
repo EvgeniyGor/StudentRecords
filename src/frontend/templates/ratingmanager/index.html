@@ -4,6 +4,32 @@
 
 {% block content %}
 
-<h1>ratigns</h1>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr>
+                <th>ФИО</th>
+                <th>Программирование</th>
+                <th>Информатика</th>
+                <th>Мат. анализ</th>
+                <th>Теория вероятности</th>
+            </tr>
+            {% for i in 'xxx' %}
+            <tr>
+                <td>Иванов И.</td>
+                <td>35</td>
+                <td>25</td>
+                <td>15</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>Петров П.</td>
+                <td>25</td>
+                <td>31</td>
+                <td>33</td>
+                <td>15</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 
 {% endblock %}

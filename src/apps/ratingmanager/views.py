@@ -1,5 +1,9 @@
 from django.shortcuts import render
 
 
-def index(request):
-    return render(request, 'ratingmanager/index.html', {})
+def attendance(request):
+    return render(request, 'ratingmanager/attendance.html', {})
+
+
+def grades(request):
+    return render(request, 'ratingmanager/grades.html', {})

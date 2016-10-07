@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class DatamanagerConfig(AppConfig):
-    name = 'apps.datamanager'
+    name = 'backend.datamanager'

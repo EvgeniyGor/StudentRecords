@@ -3,5 +3,5 @@ from __future__ import unicode_literals
 from django.apps import AppConfig
 
 
-class RatingmanagerConfig(AppConfig):
-    name = 'apps.ratingmanager'
+class UsermanagerConfig(AppConfig):
+    name = 'backend.usermanager'

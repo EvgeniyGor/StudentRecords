@@ -29,11 +29,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'apps.usermanager',
-    'apps.datamanager',
-    'apps.ratingmanager',
-    'apps.reportmanager',
-    'apps.templatemanager',
+    'backend.usermanager',
+    'backend.datamanager',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

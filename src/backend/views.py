@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
+from models.user_profile import UserProfile
 
 
 def students(request):
@@ -26,7 +29,15 @@ def term_projects(request):
 
 
 def register(request):
-    # user = User.objects.create_user('test', 'test', 'test@mail.ru', 'testpassword94')
-    # user.save()
+    # UserProfile.create(
+    #     'login',
+    #     '1234',
+    #     'ololo@mail.ru',
+    #     first_name='Иван',
+    #     last_name='Факов',
+    #     patronymic='Петрович',
+    #     github_id='12345',
+    #     stepic_id='235'
+    # )
 
     return render(request, 'registration.html', {})

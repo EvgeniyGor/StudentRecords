@@ -5,7 +5,9 @@ from models.user_profile import UserProfile
 
 
 def students(request):
-    return render(request, 'students.html', {})
+    users = list(UserProfile.objects.all())
+
+    return render(request, 'students.html', {'users': users})
 
 
 def grades(request):
@@ -26,18 +28,3 @@ def group_list(request):
 
 def term_projects(request):
     return render(request, 'term-projects.html', {})
-
-
-def register(request):
-    # UserProfile.create(
-    #     'login',
-    #     '1234',
-    #     'ololo@mail.ru',
-    #     first_name='Иван',
-    #     last_name='Факов',
-    #     patronymic='Петрович',
-    #     github_id='12345',
-    #     stepic_id='235'
-    # )
-
-    return render(request, 'registration.html', {})

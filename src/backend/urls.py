@@ -7,7 +7,5 @@ urlpatterns = [
     url(r'^group-list', group_list, name='group-list'),
     url(r'^schedule', schedule, name='schedule'),
     url(r'^students', students, name='students'),
-    url(r'^term-projects', term_projects, name='term-projects'),
-
-    url(r'^$', register, name='registration'),
+    url(r'^term-projects', term_projects, name='term-projects')
 ]

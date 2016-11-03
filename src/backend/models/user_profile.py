@@ -80,6 +80,7 @@ class UserProfile(models.Model):
         user = User.objects.create_user(username=login, password=password, email=email)
         user.first_name = params.get('first_name')
         user.last_name = params.get('last_name')
+        user.is_superuser = params.get('is_superuser', False)
         user.save()
 
         user_profile = UserProfile.objects.create(

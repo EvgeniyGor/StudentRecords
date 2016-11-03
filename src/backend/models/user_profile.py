@@ -3,7 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-PERSON_TYPE_CHOICES = (
+PERSON_ROLE_CHOICES = (
     ('s', 'Студент'),
     ('h', 'Староста'),
     ('t', 'Преподаватель'),
@@ -33,7 +33,7 @@ class UserProfile(models.Model):
     github_id = models.CharField(max_length=100, null=True)
     stepic_id = models.CharField(max_length=100, null=True)
 
-    type = models.CharField(max_length=2, choices=PERSON_TYPE_CHOICES, default='s')
+    role = models.CharField(max_length=2, choices=PERSON_ROLE_CHOICES, default='s')
 
     # Дата текущего избрания или зачисления на преподавательскую должность
     election_date = models.DateField(null=True)
@@ -77,7 +77,7 @@ class UserProfile(models.Model):
     @staticmethod
     def create(login, password, email, **params):
 
-        user = User.objects.create_user(login, password, email)
+        user = User.objects.create_user(username=login, password=password, email=email)
         user.first_name = params.get('first_name')
         user.last_name = params.get('last_name')
         user.save()
@@ -89,7 +89,7 @@ class UserProfile(models.Model):
             study_group=params.get('study_group'),
             github_id=params.get('github_id'),
             stepic_id=params.get('stepic_id'),
-            type=params.get('type', 's'),
+            role=params.get('role', 's'),
             election_date=params.get('election_date'),
             position=params.get('position'),
             contract_date=params.get('contract_date'),

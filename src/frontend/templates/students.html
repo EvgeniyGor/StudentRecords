@@ -61,21 +61,21 @@
 
     <br>
 
-    {% for user in users %}
+    {% for student in students %}
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-3">
                         <p>ФИО</p>
-                        <p>{{ user.first_name }} {{ user.last_name}} {{ user.patronymic }}</p>
+                        <p>{{ student.first_name }} {{ student.last_name}} {{ student.patronymic }}</p>
                     </div>
                     <div class="col-md-1">
                         <p>Группа</p>
-                        <p>2304</p>
+                        <p>{{ student.study_group }}</p>
                     </div>
                     <div class="col-md-2">
                         <p>E-mail</p>
-                        <p>{{ user.email }}</p>
+                        <p>{{ student.email }}</p>
                     </div>
                     <div class="col-md-1">
                         <p>Github</p>

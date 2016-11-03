@@ -5,6 +5,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+LOGIN_URL = '/login'
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -17,8 +19,12 @@ DATABASES = {
         'NAME': 'studentrecords',
         'USER': '',
         'PASSWORD': '',
-        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',  #
+        'HOST': '',
+        'PORT': '',
+        'TEST': {
+            'NAME': 'test_studentrecords',
+            'CREATE_DB': "False"
+        },
     }
 }
 
@@ -30,7 +36,7 @@ TIME_ZONE = 'Europe/Moscow'
 
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = 1
+SITE_ID = u'581a722df3095702d6ca11c0'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.

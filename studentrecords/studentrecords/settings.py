@@ -70,7 +70,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/static')
+    os.path.join(BASE_DIR, 'app/static')
 ]
 
 # List of finder classes that know how to find static files in
@@ -104,15 +104,14 @@ ROOT_URLCONF = 'studentrecords.urls'
 WSGI_APPLICATION = 'studentrecords.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'frontend/templates')
+    os.path.join(BASE_DIR, 'app/templates/app')
 )
 
 INSTALLED_APPS = (
-    'backend',
+    'app',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin'

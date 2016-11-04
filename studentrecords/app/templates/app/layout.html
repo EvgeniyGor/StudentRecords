@@ -13,13 +13,13 @@
     <body>
 
         {% url 'index' as index_url %}
-        {% url 'backend:login' as login_url %}
-        {% url 'backend:attendance' as attendance_url %}
-        {% url 'backend:grades' as grades_url %}
-        {% url 'backend:group-list' as group_list_url %}
-        {% url 'backend:schedule' as schedule_url %}
-        {% url 'backend:students' as students_url %}
-        {% url 'backend:term-projects' as term_projects_url %}
+        {% url 'app:login' as login_url %}
+        {% url 'app:attendance' as attendance_url %}
+        {% url 'app:grades' as grades_url %}
+        {% url 'app:group-list' as group_list_url %}
+        {% url 'app:schedule' as schedule_url %}
+        {% url 'app:students' as students_url %}
+        {% url 'app:term-projects' as term_projects_url %}
 
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <div class="container-fluid">

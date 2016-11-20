@@ -16,7 +16,7 @@ class Attendance(models.Model):
 
     @staticmethod
     def create(student_id, attendance_records=[]):
-        student = UserProfile.objects.get(id=student_id)
+        student = UserProfile.objects.get_by_login(id=student_id)
         attendance = Attendance.objects.create(student=student, attendance_records=attendance_records)
         attendance.save()
 

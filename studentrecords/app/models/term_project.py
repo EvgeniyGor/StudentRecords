@@ -17,7 +17,7 @@ class TermProject(models.Model):
 
     @staticmethod
     def create(student_id, projects=[]):
-        student = UserProfile.objects.get(id=student_id)
+        student = UserProfile.objects.get_by_login(id=student_id)
         term_project = TermProject.objects.create(student=student, projects=projects)
         term_project.save()
 

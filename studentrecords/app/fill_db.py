@@ -42,9 +42,9 @@ def add_users():
 
 
 def add_attendance():
-    student0 = UserProfile.objects.get(login='student0').id
-    student1 = UserProfile.objects.get(login='student1').id
-    student2 = UserProfile.objects.get(login='student2').id
+    student0 = UserProfile.objects.get_by_login(login='student0').id
+    student1 = UserProfile.objects.get_by_login(login='student1').id
+    student2 = UserProfile.objects.get_by_login(login='student2').id
 
     Attendance.create(student_id=student0,
                       attendance_records=[
@@ -66,9 +66,9 @@ def add_attendance():
 
 
 def add_grades():
-    student0 = UserProfile.objects.get(login='student0').id
-    student1 = UserProfile.objects.get(login='student1').id
-    student2 = UserProfile.objects.get(login='student2').id
+    student0 = UserProfile.objects.get_by_login(login='student0').id
+    student1 = UserProfile.objects.get_by_login(login='student1').id
+    student2 = UserProfile.objects.get_by_login(login='student2').id
 
     Grades.create(student_id=student0,
                   grades=[
@@ -117,9 +117,9 @@ def add_grades():
 
 
 def add_term_projects():
-    student0 = UserProfile.objects.get(login='student0').id
-    student1 = UserProfile.objects.get(login='student1').id
-    student2 = UserProfile.objects.get(login='student2').id
+    student0 = UserProfile.objects.get_by_login(login='student0').id
+    student1 = UserProfile.objects.get_by_login(login='student1').id
+    student2 = UserProfile.objects.get_by_login(login='student2').id
 
     TermProject.create(student_id=student0,
                        projects=[
@@ -154,8 +154,13 @@ def add_term_projects():
                                    github_link='link2')
                        ])
 
-if __name__ == '__main__':
+
+def main():
     add_users()
     add_grades()
     add_attendance()
     add_term_projects()
+
+
+if __name__ == '__main__':
+    main()

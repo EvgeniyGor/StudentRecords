@@ -2,7 +2,10 @@
 
 from django.contrib.auth import authenticate
 from django.shortcuts import render, HttpResponseRedirect
-from models.user_profile import *
+from models.user_profile import UserProfile
+from models.grades import Grades
+from models.attendance import Attendance
+from models.term_project import TermProject
 
 
 def login(request):
@@ -22,7 +25,9 @@ def login(request):
 
 
 def students(request):
-    students_info = list(UserProfile.objects.filter(role='s'))
+    # students_info = list(UserProfile.objects.filter(role='s'))
+
+    students_info = UserProfile.profiles.filter(role='s')
 
     return render(request, 'students.html', {'students': students_info})
 

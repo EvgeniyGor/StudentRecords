@@ -7,7 +7,7 @@ from djangotoolbox.fields import ListField, EmbeddedModelField
 
 class Lab(models.Model):
     title = models.CharField(max_length=50)
-    grade = models.DecimalField(min_value=0.0, max_value=100.0, precision=1)
+    grade = models.DecimalField()
 
 
 class Lesson(models.Model):
@@ -21,7 +21,7 @@ class Grades(models.Model):
 
     @staticmethod
     def create(student_id, grades=[]):
-        student = UserProfile.objects.get(id=student_id)
+        student = UserProfile.objects.get_by_login(id=student_id)
         grade = Grades.objects.create(student=student, grades=grades)
         grade.save()
 

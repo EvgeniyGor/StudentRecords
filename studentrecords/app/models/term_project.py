@@ -15,13 +15,5 @@ class TermProject(models.Model):
     student = models.ForeignKey(UserProfile)
     projects = ListField(EmbeddedModelField(Project))
 
-    @staticmethod
-    def create(student_id, projects=[]):
-        student = UserProfile.objects.get_by_login(id=student_id)
-        term_project = TermProject.objects.create(student=student, projects=projects)
-        term_project.save()
-
-        return term_project
-
     class Meta:
         db_table = 'termprojects'

@@ -25,8 +25,6 @@ def login(request):
 
 
 def students(request):
-    # students_info = list(UserProfile.objects.filter(role='s'))
-
     students_info = UserProfile.profiles.filter(role='s')
 
     return render(request, 'students.html', {'students': students_info})

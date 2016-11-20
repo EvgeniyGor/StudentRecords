@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from user_profile import UserProfile
+from ..managers.attendance_manager import AttendanceManager
 from django.db import models
 from djangotoolbox.fields import ListField, EmbeddedModelField
 
@@ -14,13 +15,7 @@ class Attendance(models.Model):
     student = models.ForeignKey(UserProfile)
     attendance_records = ListField(EmbeddedModelField(AttendanceRecord))
 
-    @staticmethod
-    def create(student_id, attendance_records=[]):
-        student = UserProfile.objects.get_by_login(id=student_id)
-        attendance = Attendance.objects.create(student=student, attendance_records=attendance_records)
-        attendance.save()
-
-        return attendance
+    attendance = AttendanceManager()
 
     class Meta:
         db_table = 'attendance'

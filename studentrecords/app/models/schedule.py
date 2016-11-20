@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from ..managers.schedule_manager import TimeTableManager
 from django.db import models
 from djangotoolbox.fields import ListField, EmbeddedModelField
 
@@ -18,6 +19,8 @@ class TimeTableDay(models.Model):
 class TimeTable(models.Model):
     group = models.CharField(max_length=30)
     timetable = ListField(EmbeddedModelField(TimeTableDay))
+
+    timetable = TimeTableManager()
 
     class Meta:
         db_table = 'timetable'

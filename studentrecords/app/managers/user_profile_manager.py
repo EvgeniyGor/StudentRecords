@@ -1,36 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import UserManager
+from manager_tools import filter_by_foreign_fields
 
 
 class UserProfileManager(models.Manager):
-    def filter(self, *args, **kwargs):
-
-        def filter_condition(profile):
-
-            profile_fields = profile.__dict__.items()
-            user_fields = profile.user.__dict__.items()
-
-            # merge profile and user fields dicts
-            fields = dict(profile_fields + user_fields +
-                          [(k, profile_fields[k] + user_fields[k])
-                           for k in set(profile_fields) & set(user_fields)])
-
-            for arg_name, arg_value in kwargs.items():
-                if arg_name not in fields:
-                    continue
-
-                if arg_value != fields[arg_name]:
-                    return False
-
-            return True
-
-        return list(filter(filter_condition, super(UserProfileManager, self).all()))
-
-    def get_by_login(self, login):
-        return super(UserProfileManager, self).get(username=login)
+    def filter(self, **filter_fields):
+        return filter_by_foreign_fields(super(UserProfileManager, self), **filter_fields)
 
     def create(self, username, password, email, **kwargs):
-
         user_manager = UserManager()
 
         user = user_manager.create_user(username=username, password=password, email=email)
@@ -39,7 +16,7 @@ class UserProfileManager(models.Manager):
         user.is_superuser = kwargs.get('is_superuser', False)
         user.save()
 
-        user_profile = self.create(
+        self.create(
             user=user,
             patronymic=kwargs.get('patronymic'),
             birth_date=kwargs.get('birth_date'),
@@ -55,7 +32,3 @@ class UserProfileManager(models.Manager):
             academic_status=kwargs.get('academic_status'),
             year_of_academic_status=kwargs.get('year_of_academic_status')
         )
-
-        user_profile.save()
-
-        return user_profile

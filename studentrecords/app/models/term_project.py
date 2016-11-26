@@ -10,9 +10,12 @@ class Project(models.Model):
     project_title = models.CharField(max_length=100)
     github_link = models.CharField(max_length=100)
 
+    class Meta:
+        db_table = 'projects'
+
 
 class TermProject(models.Model):
-    student = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(UserProfile)
     projects = ListField(EmbeddedModelField(Project))
 
     class Meta:

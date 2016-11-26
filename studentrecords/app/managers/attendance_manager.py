@@ -7,9 +7,9 @@ class AttendanceManager(models.Manager):
     def filter(self, **filter_fields):
         return filter_by_foreign_fields(super(AttendanceManager, self), **filter_fields)
 
-    def create(self, student_id, attendance_records=[]):
+    def create(self, user_id, attendance_records=[]):
         user_profile_manager = UserProfileManager()
 
-        student = user_profile_manager.objects.get(id=student_id)
+        user = user_profile_manager.get(id=user_id)
 
-        self.create(student=student, attendance_records=attendance_records)
+        self.create(user=user, attendance_records=attendance_records)

@@ -55,7 +55,7 @@ class UserProfile(models.Model):
     academic_status = models.CharField(max_length=1, choices=ACADEMIC_STATUS_CHOICES, null=True)
     year_of_academic_status = models.DateField(null=True)
 
-    profiles = UserProfileManager()
+    objects = UserProfileManager()
 
     @property
     def first_name(self):

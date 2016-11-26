@@ -25,17 +25,23 @@ def login(request):
 
 
 def students(request):
-    students_info = UserProfile.profiles.filter(role='s')
+    students_info = UserProfile.objects.filter(role='s')
 
     return render(request, 'students.html', {'students': students_info})
 
 
 def grades(request):
-    return render(request, 'grades.html', {})
+
+    grades_info = Grades.objects.all()
+
+    return render(request, 'grades.html', {'grades': grades_info})
 
 
 def attendance(request):
-    return render(request, 'attendance.html', {})
+
+    attendance_info = Attendance.objects.all()
+
+    return render(request, 'attendance.html', { 'attendance': attendance_info})
 
 
 def schedule(request):

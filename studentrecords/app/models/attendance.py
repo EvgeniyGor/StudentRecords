@@ -10,12 +10,13 @@ class AttendanceRecord(models.Model):
     lesson_name = models.CharField(max_length=30)
     date = models.DateTimeField()
 
+    class Meta:
+        db_table = 'attendancerecord'
+
 
 class Attendance(models.Model):
-    student = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(UserProfile)
     attendance_records = ListField(EmbeddedModelField(AttendanceRecord))
-
-    attendance = AttendanceManager()
 
     class Meta:
         db_table = 'attendance'

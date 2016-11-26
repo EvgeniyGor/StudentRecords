@@ -7,9 +7,9 @@ class TermProjectManager(models.Manager):
     def filter(self, **filter_fields):
         return filter_by_foreign_fields(super(TermProjectManager, self), **filter_fields)
 
-    def create(self, student_id, projects=[]):
+    def create(self, user_id, projects=[]):
         user_profile_manager = UserProfileManager()
 
-        student = user_profile_manager.objects.get(id=student_id)
+        user = user_profile_manager.profiles.get(id=user_id)
 
-        self.create(student=student, projects=projects)
+        self.create(user=user, projects=projects)

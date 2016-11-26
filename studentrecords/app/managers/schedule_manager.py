@@ -7,9 +7,9 @@ class TimeTableManager(models.Manager):
     def filter(self, **filter_fields):
         return filter_by_foreign_fields(super(TimeTableManager, self), **filter_fields)
 
-    def create(self, student_id, timetable=[]):
+    def create(self, user_id, timetable=[]):
         user_profile_manager = UserProfileManager()
 
-        student = user_profile_manager.objects.get(id=student_id)
+        user = user_profile_manager.profiles.get(id=user_id)
 
-        self.create(student=student, timetable=timetable)
+        self.create(user=user, timetable=timetable)

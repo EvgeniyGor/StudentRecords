@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth import authenticate
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from models.user_profile import UserProfile
 from models.grades import Grades
 from models.attendance import Attendance
-from models.term_project import TermProject
 
 
 def login(request):
@@ -54,3 +53,7 @@ def group_list(request):
 
 def term_projects(request):
     return render(request, 'term-projects.html', {})
+
+
+def get_report(request):
+    return HttpResponse('this is report')

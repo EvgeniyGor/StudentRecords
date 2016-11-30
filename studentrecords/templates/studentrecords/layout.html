@@ -13,14 +13,14 @@
     <body>
 
         {% url 'index' as index_url %}
-        {% url 'app:login' as login_url %}
-        {% url 'app:logout' as logout_url %}
-        {% url 'app:attendance' as attendance_url %}
-        {% url 'app:grades' as grades_url %}
-        {% url 'app:group-list' as group_list_url %}
-        {% url 'app:schedule' as schedule_url %}
-        {% url 'app:students' as students_url %}
-        {% url 'app:term-projects' as term_projects_url %}
+        {% url 'studentrecords:login' as login_url %}
+        {% url 'studentrecords:logout' as logout_url %}
+        {% url 'studentrecords:attendance' as attendance_url %}
+        {% url 'studentrecords:grades' as grades_url %}
+        {% url 'studentrecords:group-list' as group_list_url %}
+        {% url 'studentrecords:schedule' as schedule_url %}
+        {% url 'studentrecords:students' as students_url %}
+        {% url 'studentrecords:term-projects' as term_projects_url %}
 
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <div class="container-fluid">

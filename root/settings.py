@@ -70,7 +70,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'app/static')
+    os.path.join(BASE_DIR, 'studentrecords/static')
 ]
 
 # List of finder classes that know how to find static files in
@@ -98,17 +98,17 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'studentrecords.urls'
+ROOT_URLCONF = 'root.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'studentrecords.wsgi.application'
+WSGI_APPLICATION = 'root.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'app/templates/app')
+    os.path.join(BASE_DIR, 'studentrecords/templates/studentrecords')
 )
 
 INSTALLED_APPS = (
-    'app',
+    'studentrecords',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

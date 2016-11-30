@@ -1,9 +1,14 @@
-from django.conf.urls import url, include
-from django.contrib import admin
-from django.views.generic.base import TemplateView
+from django.conf.urls import url
+from views import *
 
 urlpatterns = [
-    url(r'^(index.html)?$', TemplateView.as_view(template_name='index.html'), name='index'),
-    url(r'^admin/', admin.site.urls),
-    url(r'^\.*/?', include('app.urls', namespace='app')),
+    url(r'^attendance', attendance, name='attendance'),
+    url(r'^grades', grades, name='grades'),
+    url(r'^group-list', group_list, name='group-list'),
+    url(r'^schedule', schedule, name='schedule'),
+    url(r'^students', students, name='students'),
+    url(r'^term-projects', term_projects, name='term-projects'),
+    url(r'^login', user_login, name='login'),
+    url(r'^logout', user_logout, name='logout'),
+    url(r'^report', get_report, name='get-report')
 ]

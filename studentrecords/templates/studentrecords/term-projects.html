@@ -50,7 +50,7 @@
             <td>{{ project.lesson_name }}</td>
             <td>{{ project.project_title }}</td>
             <td>
-                <a href="#">Ссылка на репозиторий</a>
+                <a href="{{ project.github_link }}">Ссылка на репозиторий</a>
             </td>
         </tr>
         {% endfor %}

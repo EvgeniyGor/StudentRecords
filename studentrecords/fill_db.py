@@ -8,7 +8,7 @@ from models.term_project import TermProject, Project
 
 
 def add_users():
-    UserProfile.profiles.create(login='admin',
+    UserProfile.objects.create(login='admin',
                                 password='123',
                                 email='admin@gmail.com',
                                 first_name='fname',
@@ -16,14 +16,14 @@ def add_users():
                                 type='a',
                                 is_superuser=True)
 
-    UserProfile.profiles.create(login='teacher',
+    UserProfile.objects.create(login='teacher',
                                 password='123',
                                 email='teacher@gmail.com',
                                 first_name='fname',
                                 last_name='lname',
                                 type='t')
 
-    UserProfile.profiles.create(login='head',
+    UserProfile.objects.create(login='head',
                                 password='123',
                                 email='head@gmail.com',
                                 first_name='fname',
@@ -32,7 +32,7 @@ def add_users():
 
     for i in range(3):
         student = ('student%s' % i)
-        UserProfile.profiles.create(login=student,
+        UserProfile.objects.create(login=student,
                                     password='123',
                                     email=('%s@gmail.com' % student),
                                     first_name=('%s_fn' % student),

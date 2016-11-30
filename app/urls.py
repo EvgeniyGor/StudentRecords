@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^schedule', schedule, name='schedule'),
     url(r'^students', students, name='students'),
     url(r'^term-projects', term_projects, name='term-projects'),
-    url(r'^login', login, name='login'),
+    url(r'^login', user_login, name='login'),
+    url(r'^logout', user_logout, name='logout'),
     url(r'^report', get_report, name='get-report')
 ]

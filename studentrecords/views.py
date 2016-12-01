@@ -8,7 +8,8 @@ from models.grades import Grades
 from models.attendance import Attendance
 from models.term_project import TermProject
 from fill_db import add_users
-from pdf_generator import  render_to_pdf
+from pdf_generator import render_to_pdf
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -56,12 +57,12 @@ def attendance(request):
     return render(request, 'attendance.html', {'attendance': attendance_info})
 
 
-#@login_required
+# @login_required
 def schedule(request):
     return render(request, 'timetable.html', {})
 
 
-#@login_required
+# @login_required
 def group_list(request):
     students = UserProfile.objects.filter(role='s')
 
@@ -90,14 +91,11 @@ def term_projects(request):
 
         project_list[group].append(project)
 
-    print(project_list['2304'][0].projects)
-
     return render(request, 'term-projects.html', {'projectlist': project_list})
 
 
-
 def get_report(request):
-    #add_users()
+    # add_users()
     students = UserProfile.objects.filter(role='s')
     '''
     st1 = UserProfile()
@@ -105,13 +103,14 @@ def get_report(request):
     students = [st1,st2]
     '''
     article = "List of the students. Список студентов."
-    #article.encode("?")
+    # article.encode("?")
     pdf = render_to_pdf('students-to-pdf.html', {
         'article': article,
         'students': students
     })
 
     if pdf:
-        pdf_file = open("/home/nick1/Загрузки/mygit/StudentRecords/studentrecords/static/reports/report.pdf", 'w').write(pdf)
-    #return HttpResponse('this is report')
+        pdf_file = open("/home/nick1/Загрузки/mygit/StudentRecords/studentrecords/static/reports/report.pdf",
+                        'w').write(pdf)
+    # return HttpResponse('this is report')
     return render(request, 'report-download.html')

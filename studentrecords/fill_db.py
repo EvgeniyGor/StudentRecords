@@ -8,37 +8,37 @@ from models.term_project import TermProject, Project
 
 
 def add_users():
-    UserProfile.objects.create(login='admin',
+    UserProfile.objects.create(username='admin2',
                                 password='123',
-                                email='admin@gmail.com',
+                                email='admin2@gmail.com',
                                 first_name='fname',
                                 last_name='lname',
                                 type='a',
                                 is_superuser=True)
-
-    UserProfile.objects.create(login='teacher',
-                                password='123',
-                                email='teacher@gmail.com',
-                                first_name='fname',
-                                last_name='lname',
-                                type='t')
-
-    UserProfile.objects.create(login='head',
-                                password='123',
-                                email='head@gmail.com',
-                                first_name='fname',
-                                last_name='lname',
-                                type='h')
-
-    for i in range(3):
-        student = ('student%s' % i)
-        UserProfile.objects.create(login=student,
-                                    password='123',
-                                    email=('%s@gmail.com' % student),
-                                    first_name=('%s_fn' % student),
-                                    last_name=('%s_ln' % student),
-                                    study_group='2304',
-                                    type='s')
+    #
+    # UserProfile.objects.create(username='teacher',
+    #                             password='123',
+    #                             email='teacher@gmail.com',
+    #                             first_name='fname',
+    #                             last_name='lname',
+    #                             type='t')
+    #
+    # UserProfile.objects.create(username='head',
+    #                             password='123',
+    #                             email='head@gmail.com',
+    #                             first_name='fname',
+    #                             last_name='lname',
+    #                             type='h')
+    #
+    # for i in range(3):
+    #     student = ('student%s' % i)
+    #     UserProfile.objects.create(username=student,
+    #                                 password='123',
+    #                                 email=('%s@gmail.com' % student),
+    #                                 first_name=('%s_fn' % student),
+    #                                 last_name=('%s_ln' % student),
+    #                                 study_group='2304',
+    #                                 type='s')
 
 
 def add_attendance():

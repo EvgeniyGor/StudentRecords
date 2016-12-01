@@ -93,6 +93,10 @@ def term_projects(request):
 
     return render(request, 'term-projects.html', {'projectlist': project_list})
 
+from .fill_db import add_users
 
 def get_report(request):
+
+    add_users()
+
     return HttpResponse('this is report')

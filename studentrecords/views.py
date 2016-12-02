@@ -8,7 +8,7 @@ from models.grades import Grades
 from models.attendance import Attendance
 from models.term_project import TermProject
 from fill_db import add_users
-from pdf_generator import render_to_pdf
+from pdf_generator import render_to_pdf, add_row_for_student, generate_report
 
 
 def user_login(request):
@@ -97,20 +97,30 @@ def term_projects(request):
 def get_report(request):
     # add_users()
     students = UserProfile.objects.filter(role='s')
+    header = "List of the students. Список студентов."
+    #Генерация только библиотеками reportlab
+    article = " "
+    #for student in students:
+    #    article += add_row_for_student(student)
+    generate_report(students,header)
+    return render(request, 'report-download.html')
+    #add_users()
+    students = UserProfile.objects.filter(role='s')
     '''
+    '''
+    """
     st1 = UserProfile()
     st2 = UserProfile()
     students = [st1,st2]
-    '''
-    article = "List of the students. Список студентов."
-    # article.encode("?")
+    #article.encode("?")
+    #Генерация с помощью pisa и html template
     pdf = render_to_pdf('students-to-pdf.html', {
-        'article': article,
+        'article': header,
         'students': students
     })
 
     if pdf:
-        pdf_file = open("/home/nick1/Загрузки/mygit/StudentRecords/studentrecords/static/reports/report.pdf",
-                        'w').write(pdf)
-    # return HttpResponse('this is report')
+        # TODO: Добавить относительный или автогенерирующийся путь
+        pdf_file = open("/home/nick1/mygit/StudentRecords/studentrecords/static/reports/report.pdf", 'w').write(pdf)
+    """
     return render(request, 'report-download.html')

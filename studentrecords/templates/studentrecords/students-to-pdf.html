@@ -12,9 +12,9 @@
         h3 { font-weight: bold; font-size: 18px; }
         .fio{width: 250px;height: 150px}
         .group{width: 250px;height: 150px}
-        .email{width: 250px;height: 150px}
-        .gith{width: 250px;height: 150px}
-        .stepic{width: 250px;height: 150px}
+        .email{width: 400px;height: 150px}
+        .gith{width: 150px;height: 150px}
+        .stepic{width: 150px;height: 150px}
         p{margin: 20px}
     </style>
 
@@ -22,29 +22,41 @@
 <body>
     <div>{{ article }}</div>
 
-    <table>
-        {% for student in students %}
+    <table style="border: 1px solid black">
         <tr>
             <td class="fio">
                 <p>ФИО(FIO)</p>
-                <p>{{ student.first_name }} {{ student.last_name}} {{ student.patronymic }}</p>
             </td>
             <td class="group">
                 <p>Группа</p>
-                <p>{{ student.study_group }}</p>
             </td>
             <td class="email">
                 <p>E-mail</p>
-                <p>{{ student.email }}</p>
             </td>
             <td class="gith">
                 <p>Github</p>
+            </td>
+            <td class="stepic">
+                <p>Stepic</p>
+            </td>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td class="fio">
+                <p>{{ student.first_name }} {{ student.last_name}} {{ student.patronymic }}</p>
+            </td>
+            <td class="group">
+                <p>{{ student.study_group }}</p>
+            </td>
+            <td class="email">
+                <p>{{ student.email }}</p>
+            </td>
+            <td class="gith">
                 <p>
                     <a href="https://github.com/{{ user.github_id}}">Github</a>
                 </p>
             </td>
             <td class="stepic">
-                <p>Stepic</p>
                 <p>
                     <a href="https://stepik.org/users/{{ user.stepic_id }}">Stepic</a>
                 </p>

@@ -6,15 +6,15 @@
     <title>Title</title>
     <style type="text/css">
         @page { size: A4; margin: 1cm; }
-        @font-face { font-family: Arial; src: url(../../static/fonts/TimesNewRoman.ttf); }
-        body { font-size: 14px; line-height: 1em; font-family: Arial; }
+        @font-face { font-family: TimesNewRoman; src: url(/home/nick1/mygit/StudentRecords/studentrecords/static/fonts/TimesNewRoman.ttf); }
+        body { font-size: 14px; line-height: 1em; font-family: TimesNewRoman; }
         a { color: #FB9925; }
         h3 { font-weight: bold; font-size: 18px; }
-        .fio{width: 250px;height: 150px}
-        .group{width: 250px;height: 150px}
-        .email{width: 400px;height: 150px}
-        .gith{width: 150px;height: 150px}
-        .stepic{width: 150px;height: 150px}
+        .fio{width: 450px;}
+        .group{width: 130px;}
+        .email{width: 400px;}
+        .gith{width: 150px;}
+        .stepic{width: 150px;}
         p{margin: 20px}
     </style>
 
@@ -23,7 +23,7 @@
     <div>{{ article }}</div>
 
     <table style="border: 1px solid black">
-        <tr>
+        <tr style="padding-top: 5px;padding-bottom: 5px;">
             <td class="fio">
                 <p>ФИО(FIO)</p>
             </td>
@@ -41,15 +41,37 @@
             </td>
         </tr>
         {% for student in students %}
-        <tr>
+        <tr style="padding-top: 5px;padding-bottom: 5px;">
             <td class="fio">
-                <p>{{ student.first_name }} {{ student.last_name}} {{ student.patronymic }}</p>
+                <p>
+                    {% if student.first_name  %}
+                    {{ student.first_name }}
+                    {% endif %}
+                    {% if student.last_name %}
+                    {{ student.last_name}}
+                    {% endif %}
+                    {% if student.patronymic %}
+                    {{ student.patronymic }}
+                    {% endif %}
+                </p>
             </td>
             <td class="group">
-                <p>{{ student.study_group }}</p>
+                <p>
+                    {% if student.study_group %}
+                    {{ student.study_group }}
+                    {% else %}
+                    -
+                    {% endif %}
+                </p>
             </td>
             <td class="email">
-                <p>{{ student.email }}</p>
+                <p>
+                    {% if student.email != None %}
+                    {{ student.email }}
+                    {% else %}
+                    -
+                    {% endif %}
+                </p>
             </td>
             <td class="gith">
                 <p>
@@ -66,7 +88,7 @@
     </table>
 
 
-    {% if students == 0 %}
+    {% if students == None %}
     <div>Nothing is found</div>
     {% endif %}
 </body>

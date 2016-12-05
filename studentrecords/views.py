@@ -7,6 +7,8 @@ from models.user_profile import UserProfile
 from models.grades import Grades
 from models.attendance import Attendance
 from models.term_project import TermProject
+from fill_db import add_users
+from pdf_generator import render_to_pdf
 
 
 def user_login(request):
@@ -95,4 +97,15 @@ def term_projects(request):
 
 
 def get_report(request):
-    return HttpResponse('this is report')
+    students = UserProfile.objects.filter(role='s')
+    header = "List of the students. Список студентов."
+    pdf = render_to_pdf('students-to-pdf.html', {
+        'article': header,
+        'students': students
+    })
+
+    if pdf:
+        # TODO: Добавить относительный или автогенерирующийся путь
+        pdf_file = open("/home/nick1/mygit/StudentRecords/studentrecords/static/reports/report.pdf", 'w').write(pdf)
+
+    return render(request, 'report-download.html')

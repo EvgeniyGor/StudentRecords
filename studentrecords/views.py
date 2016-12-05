@@ -52,6 +52,8 @@ def grades(request):
 def attendance(request):
     attendance_info = Attendance.objects.all()
 
+
+
     return render(request, 'attendance.html', {'attendance': attendance_info})
 
 
@@ -89,14 +91,8 @@ def term_projects(request):
 
         project_list[group].append(project)
 
-    print(project_list['2304'][0].projects)
-
     return render(request, 'term-projects.html', {'projectlist': project_list})
 
-from .fill_db import add_users
 
 def get_report(request):
-
-    add_users()
-
     return HttpResponse('this is report')

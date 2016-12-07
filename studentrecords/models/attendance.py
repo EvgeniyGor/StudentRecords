@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from user_profile import UserProfile
-from ..managers.attendance_manager import AttendanceManager
 from django.db import models
 from djangotoolbox.fields import ListField, EmbeddedModelField
 

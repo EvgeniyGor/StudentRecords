@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.encoding import python_2_unicode_compatible
 from ..managers.user_profile_manager import UserProfileManager
 
 PERSON_TYPE_CHOICES = (
@@ -30,6 +31,7 @@ ACADEMIC_STATE_CHOICES = (
 )
 
 
+@python_2_unicode_compatible
 class UserProfile(models.Model):
     user = models.OneToOneField(
         User,
@@ -147,24 +149,32 @@ class UserProfile(models.Model):
 
     def __str__(self):
         print self.type.__str__()
-        if self.type.__str__() == 'a':
-            return 'Администратор ' + self.FIO
-        elif self.type.__str__() == 't':
-            position = "Преподаватель"
-            if not self.position == None: position = self.position
+        if self.type.__str__() == u'a':
+            return str(u'Администратор ' + self.FIO)
+
+        if self.type.__str__() == u't':
+            position = u"Преподаватель"
+            if not self.position is None:
+                position = self.position
             return position + " " + self.FIO
-        elif self.type.__str__() == 'h':
-            return "Староста группы " + self.study_group + " " + self.FIO
-        elif self.type.__str__() == 's':
+
+        if self.type.__str__() == u'h':
+            return u"Староста группы " + self.study_group + " " + self.FIO
+
+        if self.type.__str__() == u's':
             group = ""
-            if not self.study_group == None:
-                group = " группы " + self.study_group
-            return "Студент" + group + " " + self.FIO
-        else:
-            return 'Неопознанный пользователь'
+            if not self.study_group is None:
+                group = u" группы " + self.study_group
+            return u"Студент" + group + " " + self.FIO
+
+        return u'Неопознанный пользователь'
 
     def __unicode__(self):
         return unicode(self.user) or u''
+
+    @staticmethod
+    def get_profile_by_user_id(user_id):
+        return UserProfile.objects.get(user_id=user_id)
 
     class Meta:
         db_table = 'userprofiles'

@@ -18,7 +18,7 @@
         {% url 'studentrecords:attendance' as attendance_url %}
         {% url 'studentrecords:grades' as grades_url %}
         {% url 'studentrecords:group-list' as group_list_url %}
-        {% url 'studentrecords:schedule' as schedule_url %}
+        {% url 'studentrecords:timetable' as timetable_url %}
         {% url 'studentrecords:students' as students_url %}
         {% url 'studentrecords:term-projects' as term_projects_url %}
 
@@ -62,8 +62,8 @@
                   <li {% if request.get_full_path == grades_url %} class="active" {% endif %}>
                       <a href="{{ grades_url }}">Успеваемость</a>
                   </li>
-                  <li {% if request.get_full_path == schedule_url %} class="active" {% endif %}>
-                      <a href="{{ schedule_url }}">Расписание предметов</a>
+                  <li {% if request.get_full_path == timetable_url %} class="active" {% endif %}>
+                      <a href="{{ timetable_url }}">Расписание предметов</a>
                   </li>
                   <li {% if request.get_full_path == group_list_url %} class="active" {% endif %}>
                       <a href="{{ group_list_url }}">Списки групп</a>

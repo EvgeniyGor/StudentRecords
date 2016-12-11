@@ -108,6 +108,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'moevmCommon',
     'studentrecords',
     'django.contrib.auth',
     'django.contrib.contenttypes',

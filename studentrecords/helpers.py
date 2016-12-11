@@ -51,7 +51,7 @@ class GroupListHelper:
 
     @staticmethod
     def get_this_group_list(study_group):
-        pass
+        return GroupListHelper.get_all_group_lists()[study_group]
 
 
 class TimetableHelper:

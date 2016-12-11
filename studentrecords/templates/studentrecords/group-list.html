@@ -1,9 +1,12 @@
 {% extends 'layout.html' %}
+
 {% block title %}Списки групп{% endblock %}
 {% block pagename %}Списки групп{% endblock %}
 
+
 {% block content %}
 
+{% if profile.type == 'a' or profile.type == 't' %}
 <div class="modal-content" style="width: 70%; margin: 0 auto">
     <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Фильтр</h4>
@@ -46,5 +49,29 @@
     </table>
 </div>
 {% endfor %}
+
+{% endif %}
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        {% if profile.study_group == None %}
+            <caption style="font-size: 2em">Группа не задана</caption>
+        {% else %}
+            <caption style="font-size: 2em">Группа {{ profile.study_group }}</caption>
+        {% endif %}
+        <tr>
+            <th class="empty">№</th>
+            <th class="empty">ФИО</th>
+        </tr>
+        {% for student in grouplist %}
+        <tr>
+            <td class="empty">{{ forloop.counter }}</td>
+            <td class="empty">
+                <a href="#">{{ student.last_name }} {{ student.first_name }} {{ student.patronymic }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 
 {% endblock %}

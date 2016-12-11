@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import *
+from .helpers import *
 
 
 def user_login(request):
@@ -39,21 +40,16 @@ def attendance(request):
 
     attendance_info = []
 
-    if profile.type == 'a':
-        attendance_info = get_all_attendance()
+    if profile.type == 'a' or profile.type == 't':
+        attendance_info = AttendanceHelper.get_all_attendance()
 
     if profile.type == 's':
-        attendance_info = get_attendance_by_student(request.user.id)
+        attendance_info = AttendanceHelper.get_attendance_by_student(request.user.id)
+
+    if profile.type == 'h':
+        attendance_info = AttendanceHelper.get_attendance_by_group(request.user.study_group)
 
     return render(request, 'attendance.html', {'attendance': attendance_info})
-
-
-def get_attendance_by_student(student_id):
-    return Attendance.objects.filter(user_id=student_id)
-
-
-def get_all_attendance():
-    return Attendance.objects.all()
 
 
 @login_required
@@ -63,37 +59,32 @@ def grades(request):
 
     grades_info = []
 
-    if profile.type == 'a':
-        grades_info = get_all_grades()
+    if profile.type == 'a' or profile.type == 't':
+        grades_info = GradesHelper.get_all_grades()
+
+    if profile.type == 'h':
+        grades_info = GradesHelper.get_grades_by_group(request.user.study_group)
 
     if profile.type == 's':
-        grades_info = get_grades_by_student(request.user.id)
+        grades_info = GradesHelper.get_grades_by_student(request.user.id)
 
     return render(request, 'grades.html', {'grades': grades_info})
 
 
-def get_grades_by_student(student_id):
-    return Grades.objects.filter(user_id=student_id)
-
-
-def get_all_grades():
-    return Grades.objects.all()
-
-
 @login_required
 def group_list(request):
-    students = UserProfile.objects.filter(type='s')
 
-    group_list = {}
+    profile = UserProfile.get_profile_by_user_id(request.user.id)
 
-    for student in students:
-        group = student.study_group
-        if group not in group_list:
-            group_list[group] = []
+    group_list_info = []
 
-        group_list[group].append(student)
+    if profile.type == 'a' or profile.type == 't':
+        group_list_info = GroupListHelper.get_all_group_lists()
 
-    return render(request, 'group-list.html', {'grouplist': group_list})
+    if profile.type == 'h' or profile.type == 's':
+        group_list_info = GroupListHelper.get_this_group_list(request.user.study_group)
+
+    return render(request, 'group-list.html', {'grouplist': group_list_info})
 
 # def get_report(request):
 #     students = UserProfile.objects.filter(role='s')
@@ -119,18 +110,18 @@ def students(request):
 
 @login_required
 def term_projects(request):
-    projects = TermProject.objects.all()
 
-    project_list = {}
+    profile = UserProfile.get_profile_by_user_id(request.user.id)
 
-    for project in projects:
-        group = project.user.study_group
-        if group not in project_list:
-            project_list[group] = []
+    term_projects_info = []
 
-        project_list[group].append(project)
+    if profile.type == 'a' or profile.type == 't':
+        term_projects_info = TermProjectsHelper.get_all_term_projects()
 
-    return render(request, 'term-projects.html', {'projectlist': project_list})
+    if profile.type == 'h' or profile.type == 's':
+        term_projects_info = TermProjectsHelper.get_group_term_projects(request.user.study_group)
+
+    return render(request, 'term-projects.html', {'projectlist': term_projects_info})
 
 
 @login_required

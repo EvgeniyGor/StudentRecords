@@ -127,4 +127,3 @@ def term_projects(request):
 @login_required
 def timetable(request):
     return render(request, 'timetable.html', {})
-

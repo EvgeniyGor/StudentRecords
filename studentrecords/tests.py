@@ -62,6 +62,23 @@ class GetPagesTests(TestCase):
         self.assertEqual(expected, actual)
 
 
+class AuthTests(TestCase):
+    # тест на авторизацию с правильным логином и паролем
+    def test_success(self):
+        response = client.post('login', {'username': 'admin', 'password': '123'})
+        self.assertRedirects(response, "/", status_code=302, target_status_code=200, msg_prefix='')
+
+    # тест на авторизацию с неправильным логином
+    def test_bad_login(self):
+        response = client.post('login', {'username': 'admin2', 'password': '123'})
+        self.assertEqual(response.content, "Invalid login details supplied.")
+
+    # тест на авторизацию с неправильным паролем
+    def test_bad_password(self):
+        response = client.post('login/', {'username': 'admin', 'password': '12345'})
+        self.assertEqual(response.content, "Invalid login details supplied.")
+
+
 class DataTests(TestCase):
     def get_students(self):
         pass
@@ -80,3 +97,4 @@ class DataTests(TestCase):
 
     def get_term_projects(self):
         pass
+

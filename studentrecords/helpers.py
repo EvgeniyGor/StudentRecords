@@ -1,4 +1,5 @@
 from .models import *
+from moevmCommon.models import UserProfile
 
 
 class GradesHelper:

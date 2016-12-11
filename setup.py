@@ -8,7 +8,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='studentrecords',
     version='0.1',
-    packages=['studentrecords', 'studentrecords.managers'],
+    packages=['studentrecords'],
     include_package_data=True,
     license='MIT License',
     description='ИС для кафедры МО ЭВМ в ЛЭТИ',

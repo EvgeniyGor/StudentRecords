@@ -1,14 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-from manager_tools import filter_by_foreign_fields
 
 
 class UserProfileManager(models.Manager):
-    def filter(self, **filter_fields):
-        return filter_by_foreign_fields(super(UserProfileManager, self), **filter_fields)
-
     def create(self, username, password, email, **kwargs):
-
         user = User(username=username, email=email, password=password)
 
         user.first_name = kwargs.get('first_name')

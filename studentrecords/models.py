@@ -1,9 +1,10 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 from django.db import models
+from djangotoolbox.fields import ListField, EmbeddedModelField
 from django.contrib.auth.models import User
+from managers.user_profile_manager import UserProfileManager
 from django.utils.encoding import python_2_unicode_compatible
-from ..managers.user_profile_manager import UserProfileManager
 
 PERSON_TYPE_CHOICES = (
     ('s', 'Студент'),
@@ -43,20 +44,24 @@ class UserProfile(models.Model):
         null=True,
         verbose_name="Отчество",
     )
+
     birth_date = models.DateField(
         null=True,
         verbose_name="Дата рождения",
     )
+
     study_group = models.CharField(
         max_length=5,
         null=True,
         verbose_name="Учебная группа",
     )
+
     github_id = models.CharField(
         max_length=100,
         null=True,
         verbose_name="Профиль github",
     )
+
     stepic_id = models.CharField(
         max_length=100,
         null=True,
@@ -142,9 +147,9 @@ class UserProfile(models.Model):
     @property
     def FIO(self):
         first_name = last_name = patronymic = ""
-        if not self.first_name == None: first_name = self.first_name
-        if not self.last_name == None: last_name = self.last_name
-        if not self.patronymic == None: patronymic = self.patronymic
+        if not self.first_name is None: first_name = self.first_name
+        if not self.last_name is None: last_name = self.last_name
+        if not self.patronymic is None: patronymic = self.patronymic
         return first_name + ' ' + last_name + ' ' + patronymic
 
     def __str__(self):
@@ -178,3 +183,79 @@ class UserProfile(models.Model):
 
     class Meta:
         db_table = 'userprofiles'
+
+
+class AttendanceRecord(models.Model):
+    lesson_name = models.CharField(max_length=30)
+    date = models.DateTimeField()
+
+    class Meta:
+        db_table = 'attendancerecord'
+
+
+class Attendance(models.Model):
+    user = models.ForeignKey(UserProfile)
+    attendance_records = ListField(EmbeddedModelField(AttendanceRecord))
+
+    class Meta:
+        db_table = 'attendance'
+
+
+class Lab(models.Model):
+    title = models.CharField(max_length=50)
+    grade = models.IntegerField()
+
+    class Meta:
+        db_table = 'lab'
+
+
+class Lesson(models.Model):
+    name = models.CharField(max_length=50)
+    labs = ListField(EmbeddedModelField(Lab))
+
+    class Meta:
+        db_table = 'lesson'
+
+
+class Grades(models.Model):
+    user = models.ForeignKey(UserProfile)
+    grades = ListField(EmbeddedModelField(Lesson))
+
+    class Meta:
+        db_table = 'grades'
+
+
+class Project(models.Model):
+    lesson_name = models.CharField(max_length=30)
+    project_title = models.CharField(max_length=100)
+    github_link = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'projects'
+
+
+class TermProject(models.Model):
+    user = models.ForeignKey(UserProfile)
+    projects = ListField(EmbeddedModelField(Project))
+
+    class Meta:
+        db_table = 'termprojects'
+
+
+class TimeTableRecord(models.Model):
+    order_number = models.IntegerField(default=1)
+    lesson_name = models.CharField(max_length=50)
+
+
+class TimeTableDay(models.Model):
+    day_of_week = models.IntegerField(default=1)
+    is_first_week = models.BooleanField()
+    records = ListField(EmbeddedModelField(TimeTableRecord))
+
+
+class TimeTable(models.Model):
+    group = models.CharField(max_length=30)
+    timetable = ListField(EmbeddedModelField(TimeTableDay))
+
+    class Meta:
+        db_table = 'timetable'

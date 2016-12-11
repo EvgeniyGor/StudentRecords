@@ -41,7 +41,7 @@ def attendance(request):
 
     attendance_info = []
 
-    if profile.type == 'a' or profile.type == 't':
+    if profile.type == 'a' or profile.type == 't' or request.user.is_superuser:
         attendance_info = AttendanceHelper.get_all_attendance()
 
     if profile.type == 's':
@@ -60,7 +60,7 @@ def grades(request):
 
     grades_info = []
 
-    if profile.type == 'a' or profile.type == 't':
+    if profile.type == 'a' or profile.type == 't' or request.user.is_superuser:
         grades_info = GradesHelper.get_all_grades()
 
     if profile.type == 'h':
@@ -79,7 +79,7 @@ def group_list(request):
 
     group_list_info = []
 
-    if profile.type == 'a' or profile.type == 't':
+    if profile.type == 'a' or profile.type == 't' or request.user.is_superuser:
         group_list_info = GroupListHelper.get_all_group_lists()
 
     if profile.type == 'h' or profile.type == 's':
@@ -109,7 +109,7 @@ def students(request):
 
     students_info = []
 
-    if profile.type == 'a':
+    if profile.type == 'a' or request.user.is_superuser:
         students_info = UserProfile.objects.filter(type='s')
 
     return render(request, 'students.html', {'students': students_info, 'profile': profile})
@@ -122,7 +122,7 @@ def term_projects(request):
 
     term_projects_info = []
 
-    if profile.type == 'a' or profile.type == 't':
+    if profile.type == 'a' or profile.type == 't' or request.user.is_superuser:
         term_projects_info = TermProjectsHelper.get_all_term_projects()
 
     if profile.type == 'h' or profile.type == 's':

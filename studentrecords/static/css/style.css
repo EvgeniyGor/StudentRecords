@@ -103,3 +103,9 @@ body {
   border-radius: 50%;
 }
 
+.student-block {
+    padding: 7px;
+    margin: 7px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}

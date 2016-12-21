@@ -122,11 +122,11 @@ body {
     border: 1px solid gray;
 }
 
-div.form-group {
+.field-container {
     float: left;
     margin: 3px;
 }
 
-div.form-group > input {
+.field-container > input {
     width: 300px;
 }

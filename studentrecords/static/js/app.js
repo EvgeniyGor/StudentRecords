@@ -2,13 +2,13 @@ $(document).ready(function () {
     var getItemValues = function (item) {
         var $item = $(item);
         return [
-            $item.find('span[key="first_name"]').text(),
-            $item.find('span[key="last_name"]').text(),
-            $item.find('span[key="patronymic"]').text(),
-            $item.find('span[key="study_group"]').text(),
-            $item.find('span[key="email"]').text(),
-            $item.find('span[key="github"]').text(),
-            $item.find('span[key="stepic"]').text()
+            $item.find('span[js-key="first_name"]').attr('js-value'),
+            $item.find('span[js-key="last_name"]').attr('js-value'),
+            $item.find('span[js-key="patronymic"]').attr('js-value'),
+            $item.find('span[js-key="study_group"]').attr('js-value'),
+            $item.find('span[js-key="email"]').attr('js-value'),
+            $item.find('span[js-key="github"]').attr('js-value'),
+            $item.find('span[js-key="stepic"]').attr('js-value')
         ];
     };
 

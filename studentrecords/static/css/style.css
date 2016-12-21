@@ -122,6 +122,10 @@ body {
     border: 1px solid gray;
 }
 
+.attendance-table {
+
+}
+
 .field-container {
     float: left;
     margin: 3px;

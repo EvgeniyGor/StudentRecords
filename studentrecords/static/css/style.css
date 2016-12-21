@@ -113,6 +113,15 @@ body {
     border: 1px solid gray;
 }
 
+.filter-block {
+    max-width: 960px;
+    box-sizing: content-box;
+    padding: 7px;
+    margin: 7px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
 div.form-group {
     float: left;
     margin: 3px;

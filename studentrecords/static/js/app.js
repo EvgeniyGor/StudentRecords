@@ -4,7 +4,7 @@ $(document).ready(function () {
             var itemValues = getItemValuesFunc(item);
             var valuesCount = filterValues.length;
             var shouldAppear = true;
-            
+
             for (var i = 0; i < valuesCount; ++i) {
                 if (filterValues[i] === '' || filterValues[i] === undefined) {
                     continue;

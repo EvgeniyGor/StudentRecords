@@ -69,6 +69,25 @@ $(document).ready(function () {
         filterFunction('.attendance-table', filterValues, getItemValues);
     };
 
+    var gradesFilter = function () {
+        var filterbox = $('#filter-box');
+
+        var filterValues = [
+            filterbox.find('#group').val()
+        ];
+
+        var getItemValues = function (item) {
+            var $item = $(item);
+            return [
+                $item.find('h3[js-key="study_group"]').attr('js-value')
+            ];
+        };
+
+        console.log('yay');
+
+        filterFunction('.grades-table', filterValues, getItemValues);
+    };
+
     var timetableFilter = function () {
         var filterbox = $('#filter-box');
 
@@ -86,8 +105,44 @@ $(document).ready(function () {
         filterFunction('.timetable-table', filterValues, getItemValues);
     };
 
+    var grouplistfilter = function () {
+        var filterbox = $('#filter-box');
+
+        var filterValues = [
+            filterbox.find('#group').val()
+        ];
+
+        var getItemValues = function (item) {
+            var $item = $(item);
+            return [
+                $item.find('caption[js-key="study_group"]').attr('js-value')
+            ];
+        };
+
+        filterFunction('.grouplist-table', filterValues, getItemValues);
+    };
+
+    var termprojectsfilter = function () {
+        var filterbox = $('#filter-box');
+
+        var filterValues = [
+            filterbox.find('#group').val()
+        ];
+
+        var getItemValues = function (item) {
+            var $item = $(item);
+            return [
+                $item.find('caption[js-key="study_group"]').attr('js-value')
+            ];
+        };
+
+        filterFunction('.termprojects-table', filterValues, getItemValues);
+    };
+
     $('#apply-students-filter').on('click', studentsFilter);
     $('#apply-attendance-filter').on('click', attendanceFilter);
+    $('#apply-grades-filter').on('click', gradesFilter);
     $('#apply-timetable-filter').on('click', timetableFilter);
-})
-;
+    $('#apply-grouplist-filter').on('click', grouplistfilter);
+    $('#apply-termprojects-filter').on('click', termprojectsfilter);
+});
